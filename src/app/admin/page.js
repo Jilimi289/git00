@@ -36,23 +36,32 @@ export default function AdminPage() {
     fetchResources();
   }, [checkAuth]);
 
-  const fetchResources = async () => {
-    setIsLoading(true);
-    setError(null);
-    try {
-      const response = await fetch('/api/resources?source=github');
-      if (!response.ok) {
-        throw new Error('Failed to fetch resources');
-      }
-      const data = await response.json();
-      setResources(data);
-    } catch (error) {
-      console.error('Error fetching resources:', error);
-      setError('Failed to fetch resources. Please try again.');
-    } finally {
-      setIsLoading(false);
+const fetchResources = async () => {
+  setIsLoading(true);
+  setError(null);
+  try {
+    // 先尝试从本地获取
+    let response = await fetch('/api/resources');
+    
+    // 如果本地获取失败，再尝试从GitHub获取
+    if (!response.ok) {
+      console.log('本地获取失败，尝试从GitHub获取');
+      response = await fetch('/api/resources?source=github');
     }
-  };
+    
+    if (!response.ok) {
+      throw new Error('Failed to fetch resources');
+    }
+    
+    const data = await response.json();
+    setResources(data);
+  } catch (error) {
+    console.error('Error fetching resources:', error);
+    setError('Failed to fetch resources. Please try again.');
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   const handleInputChange = (e, index = null) => {
     const { name, value } = e.target;

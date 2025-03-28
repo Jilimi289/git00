@@ -1,7 +1,8 @@
 ---
-title: Configuring Environment Variables for GitBase
-description: How to configure GitBase environment variables
+title: Configuring Environment Variables for GitBase000
+description: How to configure GitBase environment variables336
 date: '2024-08-11T13:08:05.474Z'
+lastModified: '2025-03-28T19:19:57.771Z'
 ---
 # Configuring Environment Variables for GitBase
 

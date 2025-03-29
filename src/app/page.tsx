@@ -7,8 +7,8 @@ import ArticleList from '@/components/ArticleList'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'GitBase - Open Source Dynamic Website CMS Without Database',
-  description: 'A Next.js site with Tailwind & Shadcn/UI, using GitHub API for content management. No database needed for dynamic updates.',
+  title: 'Blogger Tools - Essential Tools for Content Creators',
+  description: 'Discover the best tools for bloggers, vloggers, and content creators to improve efficiency and content quality. AI tools, editing software, SEO tools, and more.',
 }
 
 export default function Home() {

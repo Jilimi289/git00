@@ -3,7 +3,7 @@ import { getSortedPostsData } from '@/lib/posts';
 
 export const metadata = {
   title: 'Articles',
-  description: 'Read our latest articles on web development, GitHub tips, and best practices.',
+  description: 'Read our latest articles on web development, BloggerTools tips, and best practices.',
 };
 
 export default function Articles() {

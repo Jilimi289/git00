@@ -38,5 +38,10 @@
     "name": "newenergyprices.com",
     "description": "newenergyprices tool",
     "url": "https://www.newenergyprices.com"
+  },
+  {
+    "name": "renmeng",
+    "description": "renzhiy",
+    "url": "https://www.renmeng.com"
   }
 ]

@@ -75,15 +75,7 @@ export function Navigation() {
           </nav>
         </div>
         <div className="flex items-center gap-4">
-          <Link
-            href="https://www.claude.ai/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-muted-foreground hover:text-foreground"
-          >
-            <Github className="h-5 w-5" />
-            <span className="sr-only">BloggerTools</span>
-          </Link>
+          
           {!isLoading && (
             isLoggedIn ? (
               <>

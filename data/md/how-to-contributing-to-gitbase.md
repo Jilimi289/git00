@@ -4,10 +4,11 @@ description: >-
   Hi, I'm Qiayue, creator of GitBase. I'm excited to welcome you to our project
   and look forward to your contributions in making GitBase even better!
 date: '2024-08-16T03:57:46.153Z'
+lastModified: '2025-03-29T16:28:01.329Z'
 ---
 # Contributing to GitBase
 
-Hello there! I'm Qiayue, the creator of GitBase. I'm thrilled that you're interested in contributing to our project. This guide is designed to help you understand how you can be a part of building and improving GitBase. Whether you're fixing bugs, adding new features, or improving documentation, your contributions are incredibly valuable and deeply appreciated. Let's work together to make GitBase even better!
+Hello there!I'm thrilled that you're interested in contributing to our project. This guide is designed to help you understand how you can be a part of building and improving GitBase. Whether you're fixing bugs, adding new features, or improving documentation, your contributions are incredibly valuable and deeply appreciated. Let's work together to make GitBase even better!
 
 First off, thank you for considering contributing to GitBase! It's people like you that make GitBase such a great tool.
 

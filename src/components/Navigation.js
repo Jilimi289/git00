@@ -76,7 +76,7 @@ export function Navigation() {
         </div>
         <div className="flex items-center gap-4">
           <Link
-            href="https://www.bloggertools.info/"
+            href="https://www.claude.ai/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-muted-foreground hover:text-foreground"

@@ -62,8 +62,9 @@ export async function POST(req) {
       hasToken: !!process.env.GITHUB_TOKEN,
     });
 
+    // Try to update GitHub first
     try {
-      // 先获取当前文件信息
+      // Get current file info
       const { data: currentFile } = await octokit.repos.getContent({
         owner,
         repo,
@@ -72,7 +73,7 @@ export async function POST(req) {
       
       console.log('Current file found, sha:', currentFile.sha);
 
-      // 然后尝试更新文件
+      // Update the file
       await octokit.repos.createOrUpdateFileContents({
         owner,
         repo,
@@ -84,27 +85,33 @@ export async function POST(req) {
       
       console.log('GitHub file updated successfully');
       
-      // 更新本地文件（确保本地路径存在）
-      try {
-        fs.writeFileSync(localPath, JSON.stringify(updatedResources, null, 2));
-        console.log('Local file updated successfully');
-      } catch (localError) {
-        console.error('Error updating local file:', localError);
-        // 继续执行，不阻止响应，因为GitHub更新已成功
+      // Only try to update local file in development environment
+      if (process.env.NODE_ENV === 'development') {
+        try {
+          fs.writeFileSync(localPath, JSON.stringify(updatedResources, null, 2));
+          console.log('Local file updated successfully');
+        } catch (localError) {
+          console.error('Error updating local file:', localError);
+          // Continue executing, as GitHub update was successful
+        }
       }
 
       return NextResponse.json(updatedResources);
     } catch (githubError) {
       console.error('GitHub API error details:', githubError);
       
-      // 如果GitHub更新失败，尝试只更新本地文件
-      try {
-        fs.writeFileSync(localPath, JSON.stringify(updatedResources, null, 2));
-        console.log('Local file updated successfully (GitHub update failed)');
-        return NextResponse.json(updatedResources);
-      } catch (localError) {
-        console.error('Error updating local file:', localError);
-        throw new Error('Failed to update both GitHub and local files');
+      // If GitHub update failed and we're in development, try to update local file only
+      if (process.env.NODE_ENV === 'development') {
+        try {
+          fs.writeFileSync(localPath, JSON.stringify(updatedResources, null, 2));
+          console.log('Local file updated successfully (GitHub update failed)');
+          return NextResponse.json(updatedResources);
+        } catch (localError) {
+          console.error('Error updating local file:', localError);
+          throw new Error('Failed to update both GitHub and local files');
+        }
+      } else {
+        throw new Error('Failed to update GitHub file and not in development environment');
       }
     }
   } catch (error) {
